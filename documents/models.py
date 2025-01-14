@@ -1,4 +1,4 @@
-# documents/models.py
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -7,7 +7,7 @@ class Document(models.Model):
         ('book', 'Book'),
         ('newspaper', 'Newspaper'),
         ('project', 'Project'),
-        # Add more types if necessary
+        
     )
     name = models.CharField(max_length=255)
     year_of_publication = models.IntegerField()

@@ -3,9 +3,13 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Document, DocumentEvaluation
 from django.contrib.auth.decorators import login_required
 from .forms import DocumentForm, DocumentEvaluationForm
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'documents/add.html')
 
 def document_list(request):
-    documents = Document.objects.all()  # Fetch all documents
+    documents = Document.objects.all()  
     return render(request, 'documents/document_list.html', {'documents': documents})
 
 
@@ -25,7 +29,7 @@ def document_detail(request, pk):
 
 @login_required
 def add_document(request):
-    # Handle form submission
+
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)  # Handle file upload
         if form.is_valid():
@@ -35,5 +39,4 @@ def add_document(request):
         form = DocumentForm()  # Create an empty form if it's a GET request
 
     return render(request, 'documents/add_document.html', {'form': form})
-def home(request):
-    return render(request, 'documents/add.html')
+
